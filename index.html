@@ -17,19 +17,19 @@
             --warna-gelap: #14532d; 
             --warna-muda: #dcfce7; 
             --warna-teks: #166534;
-            --bg-gradien: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); /* Hijau Muda Soft */
+            --bg-gradien: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%); /* Hijau Lembut */
         }
         [data-theme="biru"] { 
             --warna-utama: #2563eb; --warna-gelap: #1e3a8a; --warna-muda: #dbeafe; --warna-teks: #1e40af; 
-            --bg-gradien: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); /* Biru Muda Soft */
+            --bg-gradien: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%); /* Biru Lembut */
         }
         [data-theme="ungu"] { 
             --warna-utama: #9333ea; --warna-gelap: #581c87; --warna-muda: #f3e8ff; --warna-teks: #6b21a8; 
-            --bg-gradien: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); /* Ungu Muda Soft */
+            --bg-gradien: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 100%); /* Ungu Lembut */
         }
         [data-theme="oren"] { 
             --warna-utama: #ea580c; --warna-gelap: #7c2d12; --warna-muda: #ffedd5; --warna-teks: #9a3412; 
-            --bg-gradien: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); /* Oren Muda Soft */
+            --bg-gradien: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); /* Oren Lembut */
         }
 
         body { -webkit-tap-highlight-color: transparent; transition: background 0.5s ease; }
@@ -38,12 +38,12 @@
         .bg-pattern {
             background-color: transparent;
             background-image: radial-gradient(var(--warna-teks) 0.5px, transparent 0.5px);
-            background-size: 10px 10px;
-            opacity: 0.1;
+            background-size: 15px 15px;
+            opacity: 0.08;
         }
 
         .scroll-admin::-webkit-scrollbar { width: 6px; }
-        .scroll-admin::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .scroll-admin::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
         .scroll-admin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .scroll-admin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
@@ -64,147 +64,151 @@
 
         /* ANIMASI BERNAFAS (BREATHE) UNTUK LOGO */
         @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); }
         }
         .animasi-bernafas {
-            animation: breathe 3s ease-in-out infinite;
+            animation: breathe 2.5s ease-in-out infinite;
         }
 
-        /* Styling Kartu Login agar tidak monoton */
         .login-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
         }
     </style>
 </head>
-<body style="background: var(--bg-gradien);" class="font-sans min-h-screen flex justify-center transition-colors duration-300">
+<body style="background: var(--bg-gradien);" class="font-sans min-h-screen flex justify-center transition-colors duration-500">
     
-    <div class="fixed inset-0 bg-pattern z-0"></div>
+    <div class="fixed inset-0 bg-pattern z-0 pointer-events-none"></div>
 
     <div id="splashScreen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center tema-bg text-white transition-opacity duration-1000">
-        <img src="bilal.png" alt="Logo Bilal" class="w-36 h-36 mb-6 animasi-bernafas object-contain">
-        <h1 class="text-3xl font-extrabold tracking-tight">PP Bilal Bin Robah</h1>
-        <p class="text-white/80 mt-2 italic text-sm">Menjalin Ukhuwah, Mengukir Prestasi</p>
-        <div class="mt-10 w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+        <div class="absolute inset-0 opacity-20 bg-pattern"></div>
+        <img src="bilal.png" alt="Logo Bilal" class="w-40 h-40 mb-6 animasi-bernafas object-contain relative z-10">
+        <h1 class="text-3xl font-extrabold tracking-tight relative z-10">PP Bilal Bin Robah</h1>
+        <p class="text-white/80 mt-2 italic text-sm relative z-10">Menjalin Ukhuwah, Mengukir Prestasi</p>
+        <div class="mt-12 w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin relative z-10"></div>
     </div>
 
+    <div class="w-full max-w-md bg-transparent min-h-screen relative overflow-x-hidden z-10 flex flex-col">
 
-    <div class="w-full max-w-md bg-white min-h-screen shadow-2xl relative overflow-x-hidden z-10 flex flex-col">
-
-        <div id="menuUtama" class="hidden flex flex-col items-center justify-center flex-grow p-6 text-center">
-            <div class="absolute inset-x-0 top-0 h-1/2 rounded-b-[50px]" style="background: linear-gradient(180deg, var(--warna-muda) 0%, white 100%);"></div>
+        <div id="menuUtama" class="hidden flex flex-col items-center justify-center flex-grow p-6 text-center relative z-10">
+            <div class="absolute top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-white/40 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="relative z-10 w-36 h-36 tema-muda rounded-full flex items-center justify-center mb-8 border-8 border-white shadow-xl">
-                <svg class="w-20 h-20 tema-ikon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            <div class="relative z-10 w-40 h-40 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mb-8 border-8 border-white shadow-2xl">
+                <svg class="w-20 h-20 tema-ikon drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
             </div>
             <div class="relative z-10 mb-12">
-                <h1 class="text-4xl font-extrabold tema-text leading-tight mb-2 tracking-tighter">Jurnal Akademik</h1>
-                <p class="text-base text-gray-600 font-medium">Pondok Pesantren Bilal Bin Robah</p>
+                <h1 class="text-4xl font-extrabold tema-text leading-tight mb-2 tracking-tighter drop-shadow-sm">Jurnal Akademik</h1>
+                <p class="text-base text-gray-700 font-semibold bg-white/50 px-4 py-1 rounded-full inline-block backdrop-blur-sm shadow-sm">Pondok Pesantren Bilal Bin Robah</p>
             </div>
             
-            <div class="relative z-10 w-full space-y-6 mt-auto mb-10">
-                <button onclick="bukaHalaman('halamanLoginGuru')" class="w-full btn-3d font-bold py-5 rounded-2xl shadow-lg flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.02]">👨‍🏫 Masuk Sebagai Guru</button>
-                <button onclick="bukaHalaman('halamanLoginAdmin')" class="w-full btn-3d-admin font-bold py-5 rounded-2xl shadow-lg flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.02]">⚙️ Masuk Sebagai Admin</button>
+            <div class="relative z-10 w-full space-y-5 mt-auto mb-10">
+                <button onclick="bukaHalaman('halamanLoginGuru')" class="w-full btn-3d font-bold py-5 rounded-2xl shadow-xl flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.03]">👨‍🏫 Masuk Sebagai Guru</button>
+                <button onclick="bukaHalaman('halamanLoginAdmin')" class="w-full btn-3d-admin font-bold py-5 rounded-2xl shadow-xl flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.03]">⚙️ Masuk Sebagai Admin</button>
             </div>
         </div>
 
-        <div id="halamanLoginGuru" class="hidden min-h-screen tema-muda p-6 flex flex-col justify-center">
-            <button onclick="bukaHalaman('menuUtama')" class="absolute top-6 left-6 p-3 bg-white rounded-full shadow-lg tema-text hover:bg-gray-100 transition z-20">
+        <div id="halamanLoginGuru" class="hidden min-h-screen bg-transparent p-6 flex flex-col justify-center relative z-10">
+            <button onclick="bukaHalaman('menuUtama')" class="absolute top-6 left-6 p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg tema-text hover:bg-white transition z-20">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             </button>
 
-            <div class="login-card w-full relative z-10">
-                <div class="tema-bg p-8 text-center text-white relative">
+            <div class="login-card w-full relative z-10 mt-10">
+                <div class="tema-bg p-8 text-center text-white relative overflow-hidden">
                     <div class="absolute inset-0 opacity-20 bg-pattern"></div>
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/50 shadow-inner">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/50 shadow-inner backdrop-blur-sm">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-extrabold tracking-tight">Login Asatidz</h2>
-                    <p class="text-sm text-white/80 mt-1">Silakan masuk untuk mengisi jurnal</p>
+                    <h2 class="text-3xl font-extrabold tracking-tight relative z-10">Login Asatidz</h2>
+                    <p class="text-sm text-white/90 mt-2 relative z-10 font-medium">Silakan masuk untuk mengisi jurnal</p>
                 </div>
-                <div class="p-8">
+                <div class="p-8 bg-white/80">
                     <form id="formLoginGuru" class="space-y-6">
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">@</span>
-                            <input type="email" id="emailGuru" required placeholder="Email Guru (contoh@bilal.com)" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl tema-border text-lg shadow-inner bg-gray-50 focus:bg-white transition">
+                            <input type="email" id="emailGuru" required placeholder="Email Guru (contoh@bilal.com)" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl tema-border text-lg shadow-inner bg-white/50 focus:bg-white transition">
                         </div>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔑</span>
-                            <input type="password" id="passwordGuru" required placeholder="Sandi / PIN" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl tema-border text-lg shadow-inner bg-gray-50 focus:bg-white transition">
+                            <input type="password" id="passwordGuru" required placeholder="Sandi / PIN" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl tema-border text-lg shadow-inner bg-white/50 focus:bg-white transition">
                         </div>
-                        <button type="submit" id="btnProsesLogin" class="w-full btn-3d font-extrabold py-4 rounded-xl text-lg shadow-md mt-6 transition-all hover:brightness-105">Masuk ke Jurnal</button>
-                        <p id="pesanErrorLogin" class="text-red-600 text-center text-sm mt-4 hidden font-bold p-3 bg-red-50 rounded-lg border border-red-200"></p>
+                        <button type="submit" id="btnProsesLogin" class="w-full btn-3d font-extrabold py-4 rounded-xl text-lg shadow-xl mt-6 transition-all hover:brightness-105 active:scale-95">Masuk ke Jurnal</button>
+                        <p id="pesanErrorLogin" class="text-red-600 text-center text-sm mt-4 hidden font-bold p-3 bg-red-50 rounded-lg border border-red-200 shadow-sm"></p>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div id="halamanLoginAdmin" class="hidden min-h-screen bg-blue-50 p-6 flex flex-col justify-center">
-            <button onclick="bukaHalaman('menuUtama')" class="absolute top-6 left-6 p-3 bg-white rounded-full shadow-lg text-blue-700 hover:bg-gray-100 transition z-20">
+        <div id="halamanLoginAdmin" class="hidden min-h-screen bg-transparent p-6 flex flex-col justify-center relative z-10">
+            <button onclick="bukaHalaman('menuUtama')" class="absolute top-6 left-6 p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg text-blue-700 hover:bg-white transition z-20">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             </button>
 
-            <div class="login-card w-full relative z-10 border-blue-100">
-                <div class="bg-blue-700 p-8 text-center text-white relative">
+            <div class="login-card w-full relative z-10 mt-10 border-blue-200">
+                <div class="bg-blue-700 p-8 text-center text-white relative overflow-hidden">
                     <div class="absolute inset-0 opacity-20 bg-pattern"></div>
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/50 shadow-inner">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/50 shadow-inner backdrop-blur-sm">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-extrabold tracking-tight">Login Admin</h2>
-                    <p class="text-sm text-white/80 mt-1">Akses khusus pengelola sistem</p>
+                    <h2 class="text-3xl font-extrabold tracking-tight relative z-10">Login Admin</h2>
+                    <p class="text-sm text-white/90 mt-2 relative z-10 font-medium">Akses khusus pengelola sistem</p>
                 </div>
-                <div class="p-8">
+                <div class="p-8 bg-white/80">
                     <form id="formLoginAdmin" class="space-y-6">
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">📧</span>
-                            <input type="email" id="emailAdmin" required placeholder="Email Admin (admin@bilal.com)" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl focus:border-blue-500 outline-none text-lg shadow-inner bg-gray-50 focus:bg-white transition">
+                            <input type="email" id="emailAdmin" required placeholder="Email Admin (admin@bilal.com)" class="w-full border-2 border-blue-100 pl-12 p-4 rounded-xl focus:border-blue-500 outline-none text-lg shadow-inner bg-white/50 focus:bg-white transition">
                         </div>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🛡️</span>
-                            <input type="password" id="passwordAdmin" required placeholder="Sandi Admin" class="w-full border-2 border-gray-200 pl-12 p-4 rounded-xl focus:border-blue-500 outline-none text-lg shadow-inner bg-gray-50 focus:bg-white transition">
+                            <input type="password" id="passwordAdmin" required placeholder="Sandi Admin" class="w-full border-2 border-blue-100 pl-12 p-4 rounded-xl focus:border-blue-500 outline-none text-lg shadow-inner bg-white/50 focus:bg-white transition">
                         </div>
-                        <button type="submit" id="btnProsesAdmin" class="w-full btn-3d-admin font-extrabold py-4 rounded-xl text-lg shadow-md mt-6 transition-all hover:brightness-105">Buka Dashboard</button>
-                        <p id="pesanErrorAdmin" class="text-red-600 text-center text-sm mt-4 hidden font-bold p-3 bg-red-50 rounded-lg border border-red-200"></p>
+                        <button type="submit" id="btnProsesAdmin" class="w-full btn-3d-admin font-extrabold py-4 rounded-xl text-lg shadow-xl mt-6 transition-all hover:brightness-105 active:scale-95">Buka Dashboard</button>
+                        <p id="pesanErrorAdmin" class="text-red-600 text-center text-sm mt-4 hidden font-bold p-3 bg-red-50 rounded-lg border border-red-200 shadow-sm"></p>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div id="halamanGuru" class="hidden min-h-screen bg-gray-50 pb-10 relative flex-grow">
-            <div class="tema-bg text-white p-5 pb-10 rounded-b-[40px] shadow-lg relative z-10">
-                <div class="absolute inset-0 opacity-10 bg-pattern rounded-b-[40px]"></div>
+        <div id="halamanGuru" class="hidden min-h-screen bg-transparent pb-10 relative flex-grow">
+            <div class="tema-bg text-white p-6 pb-12 rounded-b-[40px] shadow-2xl relative z-10 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
+                
                 <div class="flex justify-between items-center mb-6 relative z-10">
-                    <button onclick="logoutAkun()" class="text-xs bg-black/20 hover:bg-black/30 px-4 py-2 rounded-full font-bold transition flex items-center gap-1"><span><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg></span> Keluar</button>
+                    <button onclick="logoutAkun()" class="text-xs bg-black/20 hover:bg-black/40 px-4 py-2.5 rounded-full font-bold transition flex items-center gap-1.5 backdrop-blur-sm border border-white/10 shadow-sm">
+                        <span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg></span> Keluar
+                    </button>
                     <div class="flex space-x-2 bg-white/20 p-2 rounded-full shadow-inner backdrop-blur-sm border border-white/20">
-                        <button onclick="gantiTema('hijau')" class="w-6 h-6 rounded-full bg-green-500 border-2 border-white shadow-sm transition hover:scale-110"></button>
-                        <button onclick="gantiTema('biru')" class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white shadow-sm transition hover:scale-110"></button>
-                        <button onclick="gantiTema('ungu')" class="w-6 h-6 rounded-full bg-purple-500 border-2 border-white shadow-sm transition hover:scale-110"></button>
-                        <button onclick="gantiTema('oren')" class="w-6 h-6 rounded-full bg-orange-500 border-2 border-white shadow-sm transition hover:scale-110"></button>
+                        <button onclick="gantiTema('hijau')" class="w-6 h-6 rounded-full bg-green-500 border-2 border-white shadow-md transition hover:scale-110 active:scale-95"></button>
+                        <button onclick="gantiTema('biru')" class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white shadow-md transition hover:scale-110 active:scale-95"></button>
+                        <button onclick="gantiTema('ungu')" class="w-6 h-6 rounded-full bg-purple-500 border-2 border-white shadow-md transition hover:scale-110 active:scale-95"></button>
+                        <button onclick="gantiTema('oren')" class="w-6 h-6 rounded-full bg-orange-500 border-2 border-white shadow-md transition hover:scale-110 active:scale-95"></button>
                     </div>
                 </div>
-                <div class="mt-2 relative z-10 px-1">
-                    <h2 class="text-xl font-medium text-white/80">Assalamu'alaikum,</h2>
-                    <h2 id="namaGuruDisplay" class="text-3xl font-extrabold tracking-tighter mb-1 mt-1">Ustaz</h2>
-                    <p class="text-sm text-white/90 mt-2 italic bg-white/10 px-3 py-1.5 rounded-lg inline-block">"Mau mengajarkan apa hari ini?"</p>
+                <div class="mt-4 relative z-10 px-2 text-center">
+                    <h2 class="text-xl font-medium text-white/90">Assalamu'alaikum,</h2>
+                    <h2 id="namaGuruDisplay" class="text-3xl font-extrabold tracking-tighter mb-2 mt-1 drop-shadow-md">Ustaz</h2>
+                    <p class="text-sm text-white/90 mt-2 italic bg-black/10 px-4 py-1.5 rounded-full inline-block backdrop-blur-sm border border-white/10">"Mau mengajarkan apa hari ini?"</p>
                 </div>
             </div>
             
-            <div class="p-6 -mt-6 relative z-20 flex-grow">
+            <div class="p-5 -mt-8 relative z-20 flex-grow">
                 <form id="jurnalForm" class="space-y-6">
                     <input type="hidden" id="namaGuru"> 
 
-                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 grid grid-cols-2 gap-5">
+                    <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 grid grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Tanggal</label>
-                            <input type="date" id="tanggal" required class="w-full border-b-2 border-gray-200 py-2.5 tema-border text-gray-800 font-bold text-base bg-gray-50/50 px-2 rounded-t-lg">
+                            <input type="date" id="tanggal" required class="w-full border-b-2 border-gray-200 focus:border-var(--warna-utama) py-2.5 tema-border text-gray-800 font-bold text-base bg-gray-50/50 px-2 rounded-t-lg transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Semester</label>
-                            <select id="semester" required class="w-full border-b-2 border-gray-200 py-2.5 tema-border font-bold text-gray-800 bg-gray-50/50 px-2 rounded-t-lg text-base outline-none appearance-none cursor-pointer">
+                            <select id="semester" required class="w-full border-b-2 border-gray-200 focus:border-var(--warna-utama) py-2.5 tema-border font-bold text-gray-800 bg-gray-50/50 px-2 rounded-t-lg text-base outline-none cursor-pointer transition">
                                 <option value="">Pilih</option>
                                 <option value="1 (Ganjil)">1 (Ganjil)</option>
                                 <option value="2 (Genap)">2 (Genap)</option>
@@ -212,21 +216,21 @@
                         </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 grid grid-cols-2 gap-5">
+                    <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 grid grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Kelas</label>
-                            <input type="text" id="kelas" required placeholder="Misal: 7A" class="w-full border-b-2 border-gray-200 py-2.5 tema-border text-lg font-extrabold text-gray-800 px-2 rounded-t-lg bg-gray-50/50">
+                            <input type="text" id="kelas" required placeholder="Misal: 7A" class="w-full border-b-2 border-gray-200 focus:border-var(--warna-utama) py-2.5 tema-border text-lg font-extrabold text-gray-800 px-2 rounded-t-lg bg-gray-50/50 transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Mata Pelajaran</label>
-                            <input type="text" id="mapel" list="daftarMapel" required placeholder="Ketik Mapel..." class="w-full border-b-2 border-gray-200 py-2.5 tema-border text-gray-800 font-bold px-2 rounded-t-lg bg-gray-50/50">
+                            <input type="text" id="mapel" list="daftarMapel" required placeholder="Ketik Mapel..." class="w-full border-b-2 border-gray-200 focus:border-var(--warna-utama) py-2.5 tema-border text-gray-800 font-bold px-2 rounded-t-lg bg-gray-50/50 transition">
                             <datalist id="daftarMapel">
                                 <option value="Aqidah"><option value="Sirah"><option value="Fiqih"><option value="Bahasa Arab"><option value="Hadis Doa"><option value="Ilmu Tajwid"><option value="Matematika"><option value="Bahasa Indonesia"><option value="Bahasa Inggris"><option value="IPA"><option value="IPS">
                             </datalist>
                         </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 space-y-5">
+                    <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 space-y-5">
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Lingkup Materi</label>
                             <textarea id="lingkupMateri" rows="3" required placeholder="Contoh: Bab 1: Rukun Islam..." class="w-full border-2 border-gray-100 p-4 rounded-xl tema-border bg-gray-50 text-base resize-none focus:bg-white transition shadow-inner"></textarea>
@@ -247,109 +251,111 @@
                             </select>
                         </div>
                         
-                        <div class="border-t border-dashed border-gray-200 pt-5 mt-2 bg-red-50/50 p-4 rounded-2xl border-2 border-red-100">
-                            <label class="block text-sm font-extrabold text-red-700 uppercase mb-3 tracking-wider flex items-center gap-2"><span>⚠️</span> Santri Butuh BimbinganKhusus</label>
-                            <textarea id="santriRemedial" rows="2" placeholder="Tulis nama-nama santri (Kosongkan jika semua tuntas)" class="w-full border-2 border-red-100 p-4 rounded-xl focus:border-red-400 focus:outline-none bg-white resize-none mb-4 text-sm shadow-sm"></textarea>
+                        <div class="border-t-2 border-dashed border-red-100 pt-5 mt-4 bg-red-50/50 p-5 rounded-2xl">
+                            <label class="block text-sm font-extrabold text-red-700 uppercase mb-3 tracking-wider flex items-center gap-2"><span>⚠️</span> Santri Butuh Bimbingan</label>
+                            <textarea id="santriRemedial" rows="2" placeholder="Kosongkan jika semua santri tuntas" class="w-full border-2 border-red-100 p-4 rounded-xl focus:border-red-400 focus:outline-none bg-white resize-none mb-4 text-sm shadow-sm transition"></textarea>
                             
-                            <label class="block text-xs font-bold text-red-500 uppercase mb-2 tracking-wider">Tindakan/Rencana Selanjutnya Pada Santri Tersebut</label>
-                            <textarea id="tindakanSantri" rows="2" placeholder="Misal: Diberikan tugas menghafal ulang di luar jam..." class="w-full border-2 border-red-100 p-4 rounded-xl focus:border-red-400 focus:outline-none bg-white resize-none text-sm shadow-sm"></textarea>
+                            <label class="block text-xs font-bold text-red-500 uppercase mb-2 tracking-wider">Tindakan Pada Santri</label>
+                            <textarea id="tindakanSantri" rows="2" placeholder="Misal: Diberikan tugas menghafal ulang..." class="w-full border-2 border-red-100 p-4 rounded-xl focus:border-red-400 focus:outline-none bg-white resize-none text-sm shadow-sm transition"></textarea>
                         </div>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="w-full btn-3d font-extrabold py-5 rounded-2xl text-xl mt-4 shadow-lg transition-all hover:brightness-105 active:scale-[0.98]">Kirim Jurnal Sekarang</button>
+                    <button type="submit" id="submitBtn" class="w-full btn-3d font-extrabold py-5 rounded-2xl text-xl mt-4 shadow-2xl transition-all hover:brightness-105 active:scale-95">Kirim Jurnal Sekarang</button>
                     <div id="statusMsg" class="text-center font-bold mt-4 hidden p-4 rounded-2xl shadow-lg transform transition-all duration-500 opacity-0 translate-y-2"></div>
                 </form>
 
-                <div id="riwayatGuruContainer" class="mt-12 bg-white p-6 rounded-3xl shadow-xl border border-gray-100 hidden">
+                <div id="riwayatGuruContainer" class="mt-12 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 hidden">
                     <h3 class="text-2xl font-extrabold tema-text border-b-2 border-gray-100 pb-4 mb-5 flex justify-between items-center tracking-tighter">
-                        <span>Riwayat Jurnal <span class="text-base font-medium text-gray-500">(30 Hari)</span></span>
-                        <span class="text-xs bg-gray-100 text-gray-400 px-3 py-1.5 rounded-full font-normal">Geser bawah 👇</span>
+                        <span>Riwayat Jurnal <span class="text-sm font-medium text-gray-400 ml-1">(30 Hari)</span></span>
+                        <span class="text-xs bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full font-bold shadow-inner">Geser 👇</span>
                     </h3>
                     <div id="riwayatGuruList" class="space-y-5 max-h-[450px] overflow-y-auto pr-2 scroll-admin"></div>
                 </div>
             </div>
             
-            <div class="text-center text-gray-300 text-[10px] py-4 mt-auto relative z-10">Sistem Jurnal Digital © PP Bilal Bin Robah</div>
+            <div class="text-center text-gray-500 font-medium text-[10px] py-6 mt-auto relative z-10 tracking-widest uppercase opacity-60">Sistem Jurnal Digital © PP Bilal Bin Robah</div>
         </div>
 
-        <div id="halamanAdmin" class="hidden min-h-screen bg-gray-100 pb-10 flex-grow">
-            <div class="bg-blue-900 text-white p-5 flex items-center justify-between shadow-lg sticky top-0 z-[60]">
-                <div class="flex items-center gap-1">
-                    <button onclick="bukaHalaman('menuUtama')" class="p-2.5 -ml-2 hover:bg-black/20 rounded-full transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg></button>
-                    <h2 class="text-xl font-bold tracking-tight">Dashboard Admin</h2>
+        <div id="halamanAdmin" class="hidden min-h-screen bg-transparent pb-10 flex-grow relative z-10 flex flex-col">
+            <div class="bg-blue-900 text-white p-5 flex items-center justify-between shadow-2xl sticky top-0 z-[60]">
+                <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+                <div class="flex items-center gap-1 relative z-10">
+                    <button onclick="bukaHalaman('menuUtama')" class="p-2.5 -ml-2 hover:bg-black/30 rounded-full transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg></button>
+                    <h2 class="text-xl font-extrabold tracking-tight">Dashboard Admin</h2>
                 </div>
-                <div class="flex space-x-2">
-                    <button id="exportPdfBtn" class="bg-red-500 hover:bg-red-600 p-2.5 rounded-xl shadow-md text-xs font-bold flex items-center gap-1.5 active:scale-95 transition">📄 PDF</button>
-                    <button id="exportBtn" class="bg-green-600 hover:bg-green-700 p-2.5 rounded-xl shadow-md active:scale-95 transition" title="Unduh Excel"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></button>
-                    <button onclick="logoutAkun()" class="text-xs bg-gray-700 hover:bg-gray-800 px-4 py-2.5 rounded-xl font-bold shadow-md transition">Keluar</button>
+                <div class="flex space-x-2 relative z-10">
+                    <button id="exportPdfBtn" class="bg-red-500 hover:bg-red-600 p-2.5 rounded-xl shadow-lg text-xs font-bold flex items-center gap-1.5 active:scale-95 transition border border-red-400">📄 PDF</button>
+                    <button id="exportBtn" class="bg-green-500 hover:bg-green-600 p-2.5 rounded-xl shadow-lg active:scale-95 transition border border-green-400" title="Unduh Excel"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></button>
+                    <button onclick="logoutAkun()" class="text-xs bg-gray-800 hover:bg-gray-900 px-4 py-2.5 rounded-xl font-bold shadow-lg transition border border-gray-700">Keluar</button>
                 </div>
             </div>
             
-            <div class="p-4 bg-blue-800 shadow-xl sticky top-[73px] z-50 space-y-4 rounded-b-3xl border-t border-blue-700">
+            <div class="p-5 bg-blue-800 shadow-xl sticky top-[76px] z-50 space-y-4 rounded-b-[30px] border-t border-blue-700/50">
                 <div class="relative">
-                    <input type="text" id="inputFilter" oninput="filterData()" placeholder="🔍 Cari nama guru, mapel, materi, santri..." class="w-full p-4 pl-12 rounded-xl border-none outline-none text-gray-800 shadow-inner font-medium text-sm bg-white focus:ring-2 focus:ring-yellow-400 transition">
-                    <span class="absolute left-4 top-4 text-gray-400">🔍</span>
+                    <input type="text" id="inputFilter" oninput="filterData()" placeholder="Cari nama guru, mapel, materi, santri..." class="w-full p-4 pl-12 rounded-2xl border-none outline-none text-gray-800 shadow-inner font-bold text-sm bg-white/95 focus:ring-4 focus:ring-blue-400/50 transition">
+                    <span class="absolute left-4 top-4 text-gray-400 text-lg">🔍</span>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-sm border border-white/10 shadow-inner">
-                    <select id="filterSemester" onchange="filterData()" class="p-2.5 rounded-lg border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
+                <div class="grid grid-cols-2 gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md border border-white/20 shadow-inner">
+                    <select id="filterSemester" onchange="filterData()" class="p-2.5 rounded-xl border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
                         <option value="">Semua Semester</option>
                         <option value="1 (Ganjil)">Semester 1</option>
                         <option value="2 (Genap)">Semester 2</option>
                     </select>
-                    <select id="filterGuru" onchange="filterData()" class="p-2.5 rounded-lg border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
+                    <select id="filterGuru" onchange="filterData()" class="p-2.5 rounded-xl border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
                         <option value="">Semua Guru</option>
                     </select>
-                    <select id="filterKelas" onchange="filterData()" class="p-2.5 rounded-lg border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
+                    <select id="filterKelas" onchange="filterData()" class="p-2.5 rounded-xl border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
                         <option value="">Semua Kelas</option>
                     </select>
-                    <select id="filterMapel" onchange="filterData()" class="p-2.5 rounded-lg border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
+                    <select id="filterMapel" onchange="filterData()" class="p-2.5 rounded-xl border-none outline-none text-gray-800 text-xs font-bold shadow-md w-full bg-white cursor-pointer hover:bg-gray-50 transition">
                         <option value="">Semua Mapel</option>
                     </select>
                 </div>
             </div>
 
-            <div class="p-4 bg-gray-100 flex-grow">
-                <div class="space-y-5 max-h-[60vh] overflow-y-auto scroll-admin pr-2" id="dataJurnalMobile"></div>
+            <div class="p-5 bg-transparent flex-grow">
+                <div class="space-y-5 max-h-[58vh] overflow-y-auto scroll-admin pr-2" id="dataJurnalMobile"></div>
             </div>
             
             <table id="tabelTersembunyi" class="hidden"></table>
         </div>
 
-        <div id="modalEdit" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
-            <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all duration-300 scale-90 translate-y-4">
-                <div class="tema-bg p-5 flex justify-between items-center text-white relative">
-                    <div class="absolute inset-0 opacity-10 bg-pattern"></div>
-                    <h3 class="font-extrabold text-xl relative z-10 tracking-tight">✏️ Edit Data Jurnal</h3>
-                    <button onclick="tutupModal()" class="font-bold text-3xl hover:text-gray-200 transition relative z-10">&times;</button>
+        <div id="modalEdit" class="hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[200] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+            <div class="bg-white rounded-[30px] shadow-2xl w-full max-w-sm overflow-hidden transform transition-all duration-300 scale-95 translate-y-4 border border-white/20">
+                <div class="tema-bg p-6 flex justify-between items-center text-white relative">
+                    <div class="absolute inset-0 opacity-20 bg-pattern"></div>
+                    <h3 class="font-extrabold text-xl relative z-10 tracking-tight flex items-center gap-2"><span>✏️</span> Edit Data Jurnal</h3>
+                    <button onclick="tutupModal()" class="font-bold text-3xl hover:text-gray-200 transition relative z-10 leading-none">&times;</button>
                 </div>
-                <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto scroll-admin bg-gray-50">
+                <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto scroll-admin bg-gray-50/50">
                     <input type="hidden" id="editId">
-                    <div class="grid grid-cols-2 gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                        <div><label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">TANGGAL</label><input type="date" id="editTanggal" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-bold text-sm bg-transparent px-1"></div>
+                    <div class="grid grid-cols-2 gap-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                        <div><label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-1 block uppercase">Tanggal</label><input type="date" id="editTanggal" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-bold text-sm bg-transparent px-1 outline-none"></div>
                         <div>
-                            <label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">SEMESTER</label>
+                            <label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-1 block uppercase">Semester</label>
                             <select id="editSemester" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-bold text-sm bg-transparent outline-none cursor-pointer px-1">
                                 <option value="1 (Ganjil)">1 (Ganjil)</option>
                                 <option value="2 (Genap)">2 (Genap)</option>
                             </select>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div><label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">KELAS</label><input type="text" id="editKelas" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-extrabold text-base bg-transparent px-1 text-gray-800"></div>
-                        <div><label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">MATA PELAJARAN</label><input type="text" id="editMapel" list="daftarMapel" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-bold bg-transparent px-1 text-gray-800"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                        <div><label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-1 block uppercase">Kelas</label><input type="text" id="editKelas" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-extrabold text-base bg-transparent px-1 text-gray-800 outline-none"></div>
+                        <div><label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-1 block uppercase">Mata Pelajaran</label><input type="text" id="editMapel" list="daftarMapel" class="w-full border-b-2 border-gray-200 py-1.5 tema-border font-bold bg-transparent px-1 text-gray-800 outline-none"></div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div><label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">LINGKUP MATERI</label><textarea id="editLingkup" rows="3" class="w-full border-2 border-gray-100 p-3 rounded-lg tema-border text-sm resize-none bg-gray-50 focus:bg-white shadow-inner"></textarea></div>
-                        <div><label class="text-xs font-bold text-gray-400 tracking-wider mb-1 block">TUJUAN PEMBELAJARAN</label><textarea id="editTujuan" rows="3" class="w-full border-2 border-gray-100 p-3 rounded-lg tema-border text-sm resize-none bg-gray-50 focus:bg-white shadow-inner"></textarea></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                        <div><label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-2 block uppercase">Lingkup Materi</label><textarea id="editLingkup" rows="3" class="w-full border-2 border-gray-100 p-3 rounded-xl tema-border text-sm resize-none bg-gray-50 focus:bg-white shadow-inner outline-none"></textarea></div>
+                        <div><label class="text-[10px] font-extrabold text-gray-400 tracking-widest mb-2 block uppercase">Tujuan Pembelajaran</label><textarea id="editTujuan" rows="3" class="w-full border-2 border-gray-100 p-3 rounded-xl tema-border text-sm resize-none bg-gray-50 focus:bg-white shadow-inner outline-none"></textarea></div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-3 border-2 border-red-100 bg-red-50/50">
-                        <div><label class="text-xs font-bold text-red-500 tracking-wider mb-1 block uppercase">Santri Bimbingan</label><input type="text" id="editSantri" class="w-full border-b-2 border-red-100 focus:border-red-400 outline-none py-1.5 font-medium text-sm bg-transparent px-1"></div>
-                        <div><label class="text-xs font-bold text-red-500 tracking-wider mb-1 block uppercase">Tindakan Dilakukan</label><input type="text" id="editTindakan" class="w-full border-b-2 border-red-100 focus:border-red-400 outline-none py-1.5 font-medium text-sm bg-transparent px-1"></div>
+                    <div class="bg-red-50 p-4 rounded-2xl shadow-sm border border-red-100 space-y-4">
+                        <div><label class="text-[10px] font-extrabold text-red-500 tracking-widest mb-1 block uppercase">Santri Bimbingan</label><input type="text" id="editSantri" class="w-full border-b-2 border-red-200 focus:border-red-400 outline-none py-1.5 font-bold text-sm bg-transparent px-1 text-red-800"></div>
+                        <div><label class="text-[10px] font-extrabold text-red-500 tracking-widest mb-1 block uppercase">Tindakan Dilakukan</label><input type="text" id="editTindakan" class="w-full border-b-2 border-red-200 focus:border-red-400 outline-none py-1.5 font-bold text-sm bg-transparent px-1 text-red-800"></div>
                     </div>
                     
-                    <button onclick="simpanEdit()" id="btnSimpanEdit" class="w-full btn-3d font-extrabold py-4 rounded-2xl mt-5 shadow-lg active:scale-[0.98] transition">Simpan Perubahan Data</button>
-                    <div class="h-2"></div> </div>
+                    <button onclick="simpanEdit()" id="btnSimpanEdit" class="w-full btn-3d font-extrabold py-4 rounded-2xl mt-6 shadow-xl active:scale-95 transition hover:brightness-105">Simpan Perubahan Data</button>
+                    <div class="h-2"></div>
+                </div>
             </div>
         </div>
 
@@ -360,9 +366,6 @@
         import { getFirestore, collection, addDoc, serverTimestamp, getDocs, query, orderBy, where, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // ==========================================
-        // KONFIGURASI FIREBASE (TETAP)
-        // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAfTWgP5BEQEOF0grm0K4IaJeA5mpknObE",
             authDomain: "bilal-jurnal-823a0.firebaseapp.com",
@@ -375,74 +378,49 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app); 
-
-        // DAFTAR EMAIL ADMIN
         const emailAdminSah = "admin@bilal.com"; 
 
         let globalDataJurnal = []; 
         let dataUntukExport = []; 
         let audioCtx;
-        let isAuthChecked = false; // Flag untuk splash screen
 
         // --- SISTEM SPLASH SCREEN & PERSISTENSI LOGIN ---
-        // Jalankan logika splash screen setelah halaman dimuat
-        window.addEventListener('load', () => {
-            const splash = document.getElementById('splashScreen');
-            
-            // Berikan waktu minimal 2.5 detik untuk animasi logo ber-nafas
-            setTimeout(() => {
-                // Hilangkan splash screen dengan efek fade out
-                splash.classList.add('opacity-0');
-                
-                // Setelah fade out selesai (1 detik), hapus elemen dari display
-                setTimeout(() => {
-                    splash.classList.add('hidden');
-                    
-                    // Cek jika Firebase belum menentukan status auth, tampilkan menu utama dulu
-                    if(!isAuthChecked) {
-                        bukaHalaman('menuUtama');
-                    }
-                }, 1000);
-            }, 2500); 
-        });
+        // Logika diperbaiki agar tidak ada "balapan" yang bikin layar jadi putih
+        let halamanTujuanAwal = 'menuUtama'; 
 
         onAuthStateChanged(auth, (user) => {
-            isAuthChecked = true; // Auth sudah dicek oleh Firebase
-            const splashHidden = document.getElementById('splashScreen').classList.contains('hidden');
-
             if (user) {
-                // Fungsi untuk mengarahkan ke halaman yang benar
-                const arahkanHalaman = () => {
-                    if (user.email.toLowerCase() === emailAdminSah) {
-                        bukaHalaman('halamanAdmin');
-                        muatDataDashboardMobile();
-                    } else {
-                        // FORMAT NAMA: Ganti titik/underscore jadi spasi, lalu kapitalisasi awal kata
-                        let namaTampil = user.email.split('@')[0].replace(/[\._]/g, ' '); 
-                        let namaLengkap = "Ustaz " + namaTampil.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                        
-                        document.getElementById('namaGuru').value = namaLengkap;
-                        document.getElementById('namaGuruDisplay').innerText = namaLengkap;
-                        document.getElementById('tanggal').valueAsDate = new Date(); 
-                        
-                        bukaHalaman('halamanGuru');
-                        muatRiwayatGuru(); 
-                    }
-                };
-
-                // Jika splash sudah hilang, langsung arahkan. 
-                // Jika belum, arahkan halaman di latar belakang (z-index splash lebih tinggi)
-                arahkanHalaman();
-
-            } else {
-                // Jika tidak login dan splash sudah hilang, pastikan di menu utama
-                if(splashHidden) {
-                    bukaHalaman('menuUtama');
+                if (user.email.toLowerCase() === emailAdminSah) {
+                    halamanTujuanAwal = 'halamanAdmin';
+                    muatDataDashboardMobile();
+                } else {
+                    let namaTampil = user.email.split('@')[0].replace(/[\._]/g, ' '); 
+                    let namaLengkap = "Ustaz " + namaTampil.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                    
+                    document.getElementById('namaGuru').value = namaLengkap;
+                    document.getElementById('namaGuruDisplay').innerText = namaLengkap;
+                    document.getElementById('tanggal').valueAsDate = new Date(); 
+                    
+                    halamanTujuanAwal = 'halamanGuru';
+                    muatRiwayatGuru(); 
                 }
+            } else {
+                halamanTujuanAwal = 'menuUtama';
             }
+            // Eksekusi buka halaman di latar belakang (tertutup splash screen)
+            bukaHalaman(halamanTujuanAwal);
+        });
+
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splashScreen');
+            setTimeout(() => {
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                }, 1000); 
+            }, 2500); 
         });
         // ----------------------------------------------
-
 
         window.mainkanSuaraKlik = function() {
             try {
@@ -465,13 +443,6 @@
         if(temaSimpanan) window.gantiTema(temaSimpanan);
 
         window.bukaHalaman = function(idHalaman) {
-            // Pastikan tidak mengganggu splash screen yang sedang tampil
-            const splash = document.getElementById('splashScreen');
-            if(splash && !splash.classList.contains('hidden') && idHalaman === 'menuUtama' && isAuthChecked) {
-                // Jangan paksa buka menu utama jika auth sudah ok tapi splash masih jalan
-                return;
-            }
-
             window.scrollTo(0, 0);
             ['menuUtama', 'halamanLoginAdmin', 'halamanLoginGuru', 'halamanGuru', 'halamanAdmin'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
@@ -489,11 +460,7 @@
             document.getElementById('pesanErrorLogin').classList.add('hidden');
 
             try {
-                // Cegah admin login di sini (opsional untuk kerapian data)
-                if(email.toLowerCase() === emailAdminSah) {
-                     throw new Error("Gunakan halaman Login Admin, Ustaz.");
-                }
-
+                if(email.toLowerCase() === emailAdminSah) throw new Error("Gunakan halaman Login Admin, Ustaz.");
                 await signInWithEmailAndPassword(auth, email, password);
                 document.getElementById('formLoginGuru').reset();
             } catch (error) {
@@ -521,7 +488,6 @@
 
             try {
                 if (email !== emailAdminSah) throw new Error("bukan-admin");
-                
                 await signInWithEmailAndPassword(auth, email, password);
                 document.getElementById('formLoginAdmin').reset();
             } catch (error) {
@@ -561,7 +527,7 @@
                     tanggal: document.getElementById('tanggal').value,
                     semester: document.getElementById('semester').value, 
                     nama_guru: document.getElementById('namaGuru').value,
-                    email_guru: auth.currentUser.email, // PENTING: Untuk Firestore Rules (Keamanan)
+                    email_guru: auth.currentUser.email, 
                     kelas: document.getElementById('kelas').value,
                     mapel: document.getElementById('mapel').value,
                     lingkup_materi: document.getElementById('lingkupMateri').value,
@@ -598,25 +564,19 @@
             const wadah = document.getElementById('riwayatGuruList');
             const container = document.getElementById('riwayatGuruContainer');
             
-            wadah.innerHTML = `<div class="animate-pulse flex space-x-4 bg-gray-50 p-4 rounded-2xl"><div class="rounded-full bg-gray-200 h-10 w-10"></div><div class="flex-1 space-y-4 py-1"><div class="h-4 bg-gray-200 rounded w-3/4"></div><div class="space-y-2"><div class="h-4 bg-gray-200 rounded"></div></div></div></div>`;
+            wadah.innerHTML = `<div class="animate-pulse flex space-x-4 bg-white/50 p-5 rounded-2xl"><div class="rounded-full bg-gray-200 h-10 w-10"></div><div class="flex-1 space-y-4 py-1"><div class="h-4 bg-gray-200 rounded w-3/4"></div><div class="space-y-2"><div class="h-4 bg-gray-200 rounded"></div></div></div></div>`;
             
-            if(!auth.currentUser) return; // Prevent error if called before auth
+            if(!auth.currentUser) return; 
             const emailGuruSekarang = auth.currentUser.email; 
             const batasWaktu = new Date();
             batasWaktu.setDate(batasWaktu.getDate() - 30); 
 
             try {
-                // QUERY OPTIMIZED
-                const q = query(
-                    collection(db, "jurnal_guru"), 
-                    where("email_guru", "==", emailGuruSekarang), 
-                    orderBy("timestamp", "desc")
-                );
-                
+                const q = query(collection(db, "jurnal_guru"), where("email_guru", "==", emailGuruSekarang), orderBy("timestamp", "desc"));
                 const querySnapshot = await getDocs(q);
                 wadah.innerHTML = '';
                 let adaData = false;
-                container.classList.remove('hidden'); // Show container once we have attempt
+                container.classList.remove('hidden'); 
 
                 querySnapshot.forEach((docSnap) => {
                     const d = docSnap.data();
@@ -627,30 +587,30 @@
                         let rppMasa = d.target_rpp && d.target_rpp.includes("Belum Selesai");
                         let badgeColor = rppMasa ? "text-red-700 bg-red-100 border-red-200" : "text-green-700 bg-green-100 border-green-200";
                         let leftBorderColor = rppMasa ? "border-l-red-400" : "border-l-green-400";
-                        let smtText = d.semester ? `<span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[10px] ml-1.5 font-medium">Smt ${d.semester.charAt(0)}</span>` : '';
+                        let smtText = d.semester ? `<span class="bg-white text-gray-500 px-2 py-0.5 rounded shadow-sm text-[10px] ml-1.5 font-bold border border-gray-100">Smt ${d.semester.charAt(0)}</span>` : '';
                         
                         wadah.innerHTML += `
-                        <div class="border-2 border-gray-100 ${leftBorderColor} border-l-4 rounded-2xl p-5 bg-gray-50 shadow-sm transition hover:shadow-lg hover:bg-white">
+                        <div class="border border-white/60 ${leftBorderColor} border-l-4 rounded-2xl p-5 bg-white/80 backdrop-blur-sm shadow-sm transition hover:shadow-lg hover:bg-white">
                             <div class="flex justify-between items-start mb-3">
                                 <div>
                                     <p class="font-extrabold text-base text-gray-800 tracking-tight">Kelas ${d.kelas} - ${d.mapel} ${smtText}</p>
-                                    <p class="text-xs text-gray-400 font-medium mt-0.5">📅 ${d.tanggal}</p>
+                                    <p class="text-[11px] text-gray-500 font-bold mt-1 uppercase tracking-widest">📅 ${d.tanggal}</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2.5 py-1 rounded-full border ${badgeColor} whitespace-nowrap shadow-inner">${d.target_rpp}</span>
+                                <span class="text-[10px] font-bold px-3 py-1.5 rounded-full border ${badgeColor} whitespace-nowrap shadow-inner">${d.target_rpp}</span>
                             </div>
                             <div class="mt-4 flex justify-end space-x-2.5 border-t border-dashed border-gray-200 pt-4">
-                                <button onclick="bukaModalEdit('${docSnap.id}', '${d.tanggal}', '${d.semester||''}', '${d.kelas}', '${d.mapel}', '${(d.lingkup_materi||'').replace(/'/g,"\\'")}', '${(d.tujuan_pembelajaran||'').replace(/'/g,"\\'")}', '${(d.santri_bimbingan||'').replace(/'/g,"\\'")}', '${(d.tindakan_bimbingan||'').replace(/'/g,"\\'")}')" class="text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 px-4 py-2 rounded-lg font-bold shadow-sm transition active:scale-95">✏️ Edit</button>
-                                <button onclick="hapusJurnal('${docSnap.id}')" class="text-xs bg-white border border-red-100 text-red-600 hover:bg-red-50 hover:border-red-300 px-4 py-2 rounded-lg font-bold shadow-sm transition active:scale-95">🗑️ Hapus</button>
+                                <button onclick="bukaModalEdit('${docSnap.id}', '${d.tanggal}', '${d.semester||''}', '${d.kelas}', '${d.mapel}', '${(d.lingkup_materi||'').replace(/'/g,"\\'")}', '${(d.tujuan_pembelajaran||'').replace(/'/g,"\\'")}', '${(d.santri_bimbingan||'').replace(/'/g,"\\'")}', '${(d.tindakan_bimbingan||'').replace(/'/g,"\\'")}')" class="text-xs bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-400 px-5 py-2.5 rounded-xl font-bold shadow-sm transition active:scale-95">✏️ Edit</button>
+                                <button onclick="hapusJurnal('${docSnap.id}')" class="text-xs bg-red-50 border border-red-100 text-red-600 hover:bg-red-100 hover:border-red-300 px-5 py-2.5 rounded-xl font-bold shadow-sm transition active:scale-95">🗑️ Hapus</button>
                             </div>
                         </div>
                         `;
                     }
                 });
 
-                if (!adaData) wadah.innerHTML = '<div class="text-center text-sm text-gray-400 italic py-6 bg-gray-50 rounded-xl border border-gray-100">Ustaz belum mengisi jurnal dalam 30 hari terakhir.</div>';
+                if (!adaData) wadah.innerHTML = '<div class="text-center text-sm text-gray-500 font-medium py-8 bg-white/50 rounded-2xl border border-white">Ustaz belum mengisi jurnal dalam 30 hari terakhir.</div>';
             } catch (error) {
                 console.error(error);
-                wadah.innerHTML = '<div class="text-center text-sm text-red-500 py-6 font-bold bg-red-50 rounded-xl border border-red-100">Gagal memuat riwayat. Pastikan konfigurasi Index database sudah ok (cek console jika error berlanjut).</div>';
+                wadah.innerHTML = '<div class="text-center text-sm text-red-600 py-8 font-bold bg-red-50/80 backdrop-blur-sm rounded-2xl border border-red-200 shadow-sm">Gagal memuat riwayat database.</div>';
             }
         };
 
@@ -680,7 +640,7 @@
 
         async function muatDataDashboardMobile() {
             const wadahData = document.getElementById('dataJurnalMobile');
-            wadahData.innerHTML = '<div class="text-center py-16 text-blue-800 bg-white rounded-2xl shadow-inner border border-blue-100 font-bold animate-pulse">Memuat database jurnal...</div>';
+            wadahData.innerHTML = '<div class="text-center py-16 text-blue-800 bg-white/80 backdrop-blur-sm rounded-3xl shadow-inner border border-white font-bold animate-pulse">Memuat database jurnal...</div>';
             try {
                 const q = query(collection(db, "jurnal_guru"), orderBy("timestamp", "desc"));
                 const querySnapshot = await getDocs(q);
@@ -690,7 +650,7 @@
                 isiDropdownFilter(globalDataJurnal); 
                 renderDataKeLayar(globalDataJurnal); 
             } catch (error) {
-                wadahData.innerHTML = '<div class="text-center py-16 text-red-700 bg-red-50 rounded-2xl font-bold border border-red-200 shadow-md">❌ Gagal memuat database jurnal.</div>';
+                wadahData.innerHTML = '<div class="text-center py-16 text-red-700 bg-red-50/90 backdrop-blur-sm rounded-3xl font-bold border border-red-200 shadow-md">❌ Gagal memuat database jurnal.</div>';
             }
         }
 
@@ -730,7 +690,7 @@
             let htmlTabel = '<tr><th>Tanggal</th><th>Semester</th><th>Guru</th><th>Kelas</th><th>Mapel</th><th>Lingkup Materi</th><th>Tujuan Pembelajaran</th><th>Status RPP</th><th>Santri Bimbingan</th><th>Tindakan Dilakukan</th></tr>';
 
             if(dataArray.length === 0) {
-                wadahData.innerHTML = '<div class="text-center py-16 text-gray-500 bg-white rounded-2xl shadow-sm border border-gray-200 font-medium italic">Data jurnal tidak ditemukan sesuai kriteria filter.</div>';
+                wadahData.innerHTML = '<div class="text-center py-16 text-gray-600 bg-white/80 backdrop-blur-sm rounded-3xl shadow-sm border border-white font-medium italic">Data jurnal tidak ditemukan.</div>';
                 tabelTersembunyi.innerHTML = htmlTabel;
                 return;
             }
@@ -740,22 +700,22 @@
                 let badgeColor = rppMasa ? "bg-red-100 text-red-800 border-red-200" : "bg-green-100 text-green-800 border-green-200";
                 let leftBorderColor = rppMasa ? "border-l-red-500" : "border-l-green-500";
                 
-                let smtText = d.semester ? `<span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[10px] ml-1.5 font-medium">Smt ${d.semester.charAt(0)}</span>` : '';
+                let smtText = d.semester ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded shadow-sm text-[10px] ml-1.5 font-bold border border-gray-200">Smt ${d.semester.charAt(0)}</span>` : '';
                 
-                let formatLingkup = d.lingkup_materi ? `<p class="mt-4 text-sm text-gray-700 leading-snug border-l-4 border-indigo-200 pl-3.5 bg-gray-50/50 py-1.5 rounded-r-lg"><strong>Materi:</strong> ${d.lingkup_materi}</p>` : '';
-                let formatTujuan = d.tujuan_pembelajaran ? `<p class="mt-1.5 text-sm text-gray-700 leading-snug border-l-4 border-blue-200 pl-3.5 bg-gray-50/50 py-1.5 rounded-r-lg"><strong>Tujuan:</strong> ${d.tujuan_pembelajaran}</p>` : '';
+                let formatLingkup = d.lingkup_materi ? `<p class="mt-4 text-sm text-gray-700 leading-snug border-l-4 border-indigo-300 pl-4 bg-indigo-50/30 py-2 rounded-r-xl"><strong>Materi:</strong> ${d.lingkup_materi}</p>` : '';
+                let formatTujuan = d.tujuan_pembelajaran ? `<p class="mt-2 text-sm text-gray-700 leading-snug border-l-4 border-blue-300 pl-4 bg-blue-50/30 py-2 rounded-r-xl"><strong>Tujuan:</strong> ${d.tujuan_pembelajaran}</p>` : '';
                 
-                let formatSantri = d.santri_bimbingan ? `<div class="mt-3.5 text-xs font-bold text-red-800 bg-red-50 border border-red-100 p-3 rounded-xl flex items-start gap-2"><span>⚠️</span> <div>Bimbingan: ${d.santri_bimbingan}</div></div>` : '';
-                let formatTindakan = d.tindakan_bimbingan ? `<div class="mt-1.5 text-xs font-bold text-blue-800 bg-blue-50 border border-blue-100 p-3 rounded-xl flex items-start gap-2"><span>💡</span> <div>Tindakan: ${d.tindakan_bimbingan}</div></div>` : '';
+                let formatSantri = d.santri_bimbingan ? `<div class="mt-4 text-xs font-bold text-red-800 bg-red-50 border border-red-100 p-3.5 rounded-xl flex items-start gap-2 shadow-sm"><span>⚠️</span> <div>Bimbingan: ${d.santri_bimbingan}</div></div>` : '';
+                let formatTindakan = d.tindakan_bimbingan ? `<div class="mt-2 text-xs font-bold text-blue-800 bg-blue-50 border border-blue-100 p-3.5 rounded-xl flex items-start gap-2 shadow-sm"><span>💡</span> <div>Tindakan: ${d.tindakan_bimbingan}</div></div>` : '';
 
                 wadahData.innerHTML += `
-                    <div class="bg-white p-6 rounded-2xl shadow-md ${leftBorderColor} border-l-4 relative transition hover:shadow-lg">
-                        <div class="flex justify-between items-start mb-2 relative z-10">
+                    <div class="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-lg ${leftBorderColor} border-l-4 relative transition hover:shadow-xl hover:scale-[1.01] border border-white/50">
+                        <div class="flex justify-between items-start mb-3 relative z-10">
                             <div>
-                                <h3 class="font-extrabold text-gray-800 text-lg tracking-tight">Kelas ${d.kelas} - ${d.mapel} ${smtText}</h3>
-                                <p class="text-xs text-gray-400 font-medium mt-0.5">📅 ${d.tanggal} &nbsp;•&nbsp; 👨‍🏫 ${d.nama_guru.replace('Ustaz ','Ust.')}</p>
+                                <h3 class="font-extrabold text-gray-800 text-xl tracking-tight">Kelas ${d.kelas} - ${d.mapel} ${smtText}</h3>
+                                <p class="text-[11px] text-gray-500 font-bold mt-1 uppercase tracking-widest">📅 ${d.tanggal} &nbsp;•&nbsp; 👨‍🏫 ${d.nama_guru.replace('Ustaz ','Ust.')}</p>
                             </div>
-                            <span class="text-[10px] font-bold px-3 py-1.5 rounded-full border ${badgeColor} text-center leading-tight whitespace-nowrap shadow-inner">${d.target_rpp}</span>
+                            <span class="text-[10px] font-bold px-3.5 py-1.5 rounded-full border ${badgeColor} text-center leading-tight whitespace-nowrap shadow-inner">${d.target_rpp}</span>
                         </div>
                         <div class="relative z-10">
                             ${formatLingkup}
@@ -763,9 +723,9 @@
                             ${formatSantri}
                             ${formatTindakan}
                         </div>
-                        <div class="mt-5 pt-4 border-t border-dashed border-gray-100 flex justify-end space-x-2.5 relative z-10">
-                            <button onclick="bukaModalEdit('${d.id}', '${d.tanggal}', '${d.semester||''}', '${d.kelas}', '${d.mapel}', '${(d.lingkup_materi||'').replace(/'/g,"\\'")}', '${(d.tujuan_pembelajaran||'').replace(/'/g,"\\'")}', '${(d.santri_bimbingan||'').replace(/'/g,"\\'")}', '${(d.tindakan_bimbingan||'').replace(/'/g,"\\'")}')" class="text-xs bg-blue-50 text-blue-700 border border-blue-100 hover:bg-blue-100 px-4 py-2 rounded-lg font-bold transition active:scale-95">✏️ Edit</button>
-                            <button onclick="hapusJurnal('${d.id}')" class="text-xs bg-red-50 text-red-700 border border-red-100 hover:bg-red-100 px-4 py-2 rounded-lg font-bold transition active:scale-95">🗑️ Hapus</button>
+                        <div class="mt-5 pt-4 border-t border-dashed border-gray-200 flex justify-end space-x-3 relative z-10">
+                            <button onclick="bukaModalEdit('${d.id}', '${d.tanggal}', '${d.semester||''}', '${d.kelas}', '${d.mapel}', '${(d.lingkup_materi||'').replace(/'/g,"\\'")}', '${(d.tujuan_pembelajaran||'').replace(/'/g,"\\'")}', '${(d.santri_bimbingan||'').replace(/'/g,"\\'")}', '${(d.tindakan_bimbingan||'').replace(/'/g,"\\'")}')" class="text-xs bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 px-5 py-2.5 rounded-xl font-bold transition active:scale-95 shadow-sm">✏️ Edit</button>
+                            <button onclick="hapusJurnal('${d.id}')" class="text-xs bg-white text-red-600 border border-red-200 hover:bg-red-50 px-5 py-2.5 rounded-xl font-bold transition active:scale-95 shadow-sm">🗑️ Hapus</button>
                         </div>
                     </div>`;
                     
@@ -803,11 +763,10 @@
             document.getElementById('editSantri').value = santri === 'undefined' ? '' : santri;
             document.getElementById('editTindakan').value = tindakan === 'undefined' ? '' : tindakan;
             
-            // Tampilkan modal dengan animasi
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
-                inner.classList.remove('scale-90', 'translate-y-4');
+                inner.classList.remove('scale-95', 'translate-y-4');
             }, 50);
         };
 
@@ -815,9 +774,8 @@
             const modal = document.getElementById('modalEdit');
             const inner = modal.querySelector('div');
             
-            // Animasi menutup
             modal.classList.add('opacity-0');
-            inner.classList.add('scale-90', 'translate-y-4');
+            inner.classList.add('scale-95', 'translate-y-4');
             
             setTimeout(() => {
                 modal.classList.add('hidden'); 
@@ -846,7 +804,6 @@
             finally { btn.innerText = "Simpan Perubahan Data"; btn.disabled = false; }
         };
 
-        // --- EXPORT EXCEL FULL COLOUR (TETAP) ---
         document.getElementById('exportBtn').addEventListener('click', async () => {
             if (typeof ExcelJS === 'undefined') { alert("Sistem Excel sedang dimuat, coba klik lagi."); return; }
             if (dataUntukExport.length === 0) { alert("Tidak ada data untuk diekspor sesuai filter saat ini."); return; }
