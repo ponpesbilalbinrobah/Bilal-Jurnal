@@ -65,7 +65,7 @@
         /* ANIMASI BERNAFAS (BREATHE) UNTUK LOGO */
         @keyframes breathe {
             0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); }
         }
         .animasi-bernafas {
             animation: breathe 2.5s ease-in-out infinite;
@@ -85,11 +85,11 @@
     
     <div class="fixed inset-0 bg-pattern z-0 pointer-events-none"></div>
 
-    <div id="splashScreen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center tema-bg text-white transition-opacity duration-1000">
-        <div class="absolute inset-0 opacity-20 bg-pattern"></div>
-        <img src="bilal.png" alt="Logo Bilal" class="w-40 h-40 mb-6 animasi-bernafas object-contain relative z-10">
-        <h1 class="text-3xl font-extrabold tracking-tight relative z-10">PP Bilal Bin Robah</h1>
-        <p class="text-white/80 mt-2 italic text-sm relative z-10">Menjalin Ukhuwah, Mengukir Prestasi</p>
+    <div id="splashScreen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 via-blue-950 to-gray-900 text-white transition-opacity duration-1000">
+        <div class="absolute inset-0 opacity-10 bg-pattern" style="background-image: radial-gradient(white 0.5px, transparent 0.5px);"></div>
+        <img src="bilal.png" alt="Logo Bilal" class="w-40 h-40 mb-6 animasi-bernafas object-contain relative z-10 drop-shadow-2xl">
+        <h1 class="text-3xl font-extrabold tracking-tight relative z-10 drop-shadow-lg">PP Bilal Bin Robah</h1>
+        <p class="text-blue-200 mt-2 italic text-sm relative z-10 drop-shadow-md font-medium">Menjalin Ukhuwah, Mengukir Prestasi</p>
         <div class="mt-12 w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin relative z-10"></div>
     </div>
 
@@ -98,12 +98,13 @@
         <div id="menuUtama" class="hidden flex flex-col items-center justify-center flex-grow p-6 text-center relative z-10">
             <div class="absolute top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-white/40 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="relative z-10 w-40 h-40 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mb-8 border-8 border-white shadow-2xl">
-                <svg class="w-20 h-20 tema-ikon drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            <div class="relative z-10 w-40 h-40 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center mb-8 border-8 border-white shadow-2xl p-4 overflow-hidden">
+                <img src="bilal.png" alt="Logo Bilal" class="w-full h-full object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
             </div>
+            
             <div class="relative z-10 mb-12">
                 <h1 class="text-4xl font-extrabold tema-text leading-tight mb-2 tracking-tighter drop-shadow-sm">Jurnal Akademik</h1>
-                <p class="text-base text-gray-700 font-semibold bg-white/50 px-4 py-1 rounded-full inline-block backdrop-blur-sm shadow-sm">Pondok Pesantren Bilal Bin Robah</p>
+                <p class="text-base text-gray-700 font-semibold bg-white/50 px-4 py-1 rounded-full inline-block backdrop-blur-sm shadow-sm border border-white">Pondok Pesantren Bilal Bin Robah</p>
             </div>
             
             <div class="relative z-10 w-full space-y-5 mt-auto mb-10">
@@ -193,7 +194,7 @@
                 <div class="mt-4 relative z-10 px-2 text-center">
                     <h2 class="text-xl font-medium text-white/90">Assalamu'alaikum,</h2>
                     <h2 id="namaGuruDisplay" class="text-3xl font-extrabold tracking-tighter mb-2 mt-1 drop-shadow-md">Ustaz</h2>
-                    <p class="text-sm text-white/90 mt-2 italic bg-black/10 px-4 py-1.5 rounded-full inline-block backdrop-blur-sm border border-white/10">"Mau mengajarkan apa hari ini?"</p>
+                    <p class="text-sm text-white/90 mt-2 italic bg-black/10 px-4 py-1.5 rounded-full inline-block backdrop-blur-sm border border-white/10 shadow-sm">"Mau mengajarkan apa hari ini?"</p>
                 </div>
             </div>
             
@@ -384,8 +385,6 @@
         let dataUntukExport = []; 
         let audioCtx;
 
-        // --- SISTEM SPLASH SCREEN & PERSISTENSI LOGIN ---
-        // Logika diperbaiki agar tidak ada "balapan" yang bikin layar jadi putih
         let halamanTujuanAwal = 'menuUtama'; 
 
         onAuthStateChanged(auth, (user) => {
@@ -407,7 +406,6 @@
             } else {
                 halamanTujuanAwal = 'menuUtama';
             }
-            // Eksekusi buka halaman di latar belakang (tertutup splash screen)
             bukaHalaman(halamanTujuanAwal);
         });
 
@@ -420,7 +418,6 @@
                 }, 1000); 
             }, 2500); 
         });
-        // ----------------------------------------------
 
         window.mainkanSuaraKlik = function() {
             try {
@@ -450,7 +447,6 @@
             document.getElementById(idHalaman).classList.remove('hidden');
         };
 
-        // --- LOGIN GURU ---
         document.getElementById('formLoginGuru').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('emailGuru').value;
@@ -474,7 +470,6 @@
             }
         });
 
-        // --- LOGIN ADMIN ---
         document.getElementById('formLoginAdmin').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('emailAdmin').value.toLowerCase();
@@ -512,7 +507,6 @@
             });
         };
 
-        // --- KIRIM JURNAL ---
         document.getElementById('jurnalForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
