@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
 
     <style>
-        /* PENGATURAN TEMA & EFEK 3D (Berlaku khusus di dalam Dashboard Guru) */
+        /* PENGATURAN TEMA & EFEK 3D */
         :root {
             --warna-utama: #16a34a; 
             --warna-gelap: #14532d; 
@@ -32,9 +32,8 @@
             --bg-gradien: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); 
         }
 
-        body { -webkit-tap-highlight-color: transparent; }
+        body { -webkit-tap-highlight-color: transparent; transition: background 0.5s ease; }
         
-        /* Background Pattern Halus (Titik-titik Putih Elegan) */
         .bg-pattern {
             background-color: transparent;
             background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
@@ -61,7 +60,6 @@
         .btn-3d-admin { background-color: #1d4ed8; color: white; border-bottom: 5px solid #1e3a8a; transition: transform 0.1s, border-bottom 0.1s; }
         .btn-3d-admin:active { border-bottom: 0px solid #1e3a8a; transform: translateY(5px); margin-bottom: 5px; }
 
-        /* ANIMASI BERNAFAS LOGO */
         @keyframes breathe {
             0%, 100% { transform: scale(1); opacity: 0.9; }
             50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 20px rgba(255,255,255,0.3)); }
@@ -93,18 +91,28 @@
         <div id="menuUtama" class="hidden flex flex-col items-center justify-center flex-grow p-6 text-center relative z-10 w-full">
             <div class="absolute top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="relative z-10 w-40 h-40 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-8 border-4 border-white/20 shadow-2xl p-4 overflow-hidden">
-                <img src="bilal.png" alt="Logo Bilal" class="w-full h-full object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300">
+            <div class="flex-grow flex items-center justify-center w-full">
+                <div class="w-full max-w-sm flex flex-col items-center">
+                    
+                    <div class="relative z-10 w-32 h-32 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-6 border-4 border-white/20 shadow-2xl p-3 overflow-hidden">
+                        <img src="bilal.png" alt="Logo Bilal" class="w-full h-full object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    
+                    <div class="relative z-10 mb-8 w-full">
+                        <h1 class="text-3xl font-extrabold text-white leading-tight mb-3 tracking-tighter drop-shadow-md">Jurnal Akademik</h1>
+                        <p class="text-xs text-blue-100 font-semibold bg-white/10 px-4 py-2 rounded-full inline-block backdrop-blur-md shadow-sm border border-white/20 tracking-wide">Pondok Pesantren Bilal Bin Robah</p>
+                    </div>
+                    
+                    <div class="relative z-10 w-full space-y-4">
+                        <button onclick="bukaHalaman('halamanLoginGuru')" class="w-full btn-3d font-bold py-4 rounded-2xl shadow-xl flex items-center justify-center text-lg tracking-wide transition-all hover:scale-[1.03]">👨‍🏫 Masuk Sebagai Guru</button>
+                        <button onclick="bukaHalaman('halamanLoginAdmin')" class="w-full btn-3d-admin font-bold py-4 rounded-2xl shadow-xl flex items-center justify-center text-lg tracking-wide transition-all hover:scale-[1.03]">⚙️ Masuk Sebagai Admin</button>
+                    </div>
+
+                </div>
             </div>
-            
-            <div class="relative z-10 mb-12">
-                <h1 class="text-4xl font-extrabold text-white leading-tight mb-3 tracking-tighter drop-shadow-md">Jurnal Akademik</h1>
-                <p class="text-sm text-blue-100 font-semibold bg-white/10 px-5 py-2 rounded-full inline-block backdrop-blur-md shadow-sm border border-white/20 tracking-wide">Pondok Pesantren Bilal Bin Robah</p>
-            </div>
-            
-            <div class="relative z-10 w-full space-y-5 mt-auto mb-10">
-                <button onclick="bukaHalaman('halamanLoginGuru')" class="w-full btn-3d font-bold py-5 rounded-2xl shadow-xl flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.03]">👨‍🏫 Masuk Sebagai Guru</button>
-                <button onclick="bukaHalaman('halamanLoginAdmin')" class="w-full btn-3d-admin font-bold py-5 rounded-2xl shadow-xl flex items-center justify-center text-xl tracking-wide transition-all hover:scale-[1.03]">⚙️ Masuk Sebagai Admin</button>
+
+            <div class="mt-4 relative z-10 w-full text-center">
+                <p class="text-blue-200/50 font-semibold text-[10px] tracking-widest uppercase">Developed by Abu Atiqah © 2026</p>
             </div>
         </div>
 
@@ -113,7 +121,7 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             </button>
 
-            <div class="login-card w-full relative z-10 mt-10">
+            <div class="login-card w-full relative z-10 mt-10 flex flex-col">
                 <div class="bg-gradient-to-br from-blue-800 to-gray-900 p-8 text-center text-white relative overflow-hidden">
                     <div class="absolute inset-0 bg-pattern"></div>
                     <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/20 shadow-inner backdrop-blur-sm p-3 relative z-10">
@@ -136,6 +144,9 @@
                         <p id="pesanErrorLogin" class="text-red-600 text-center text-sm mt-4 hidden font-bold p-3 bg-red-50 rounded-lg border border-red-200 shadow-sm"></p>
                     </form>
                 </div>
+            </div>
+            <div class="mt-auto pt-6 relative z-10 w-full text-center">
+                <p class="text-blue-200/50 font-semibold text-[10px] tracking-widest uppercase">Developed by Abu Atiqah © 2026</p>
             </div>
         </div>
 
@@ -168,9 +179,12 @@
                     </form>
                 </div>
             </div>
+            <div class="mt-auto pt-6 relative z-10 w-full text-center">
+                <p class="text-blue-200/50 font-semibold text-[10px] tracking-widest uppercase">Developed by Abu Atiqah © 2026</p>
+            </div>
         </div>
 
-        <div id="halamanGuru" class="hidden min-h-screen w-full pb-10 relative flex-grow" style="background: var(--bg-gradien);">
+        <div id="halamanGuru" class="hidden min-h-screen w-full pb-10 relative flex-grow flex flex-col" style="background: var(--bg-gradien);">
             <div class="tema-bg text-white p-6 pb-12 rounded-b-[40px] shadow-2xl relative z-10 overflow-hidden">
                 <div class="absolute inset-0 opacity-10 bg-pattern"></div>
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
@@ -269,7 +283,9 @@
                 </div>
             </div>
             
-            <div class="text-center text-gray-500 font-medium text-[10px] py-6 mt-auto relative z-10 tracking-widest uppercase opacity-60">Sistem Jurnal Digital © PP Bilal Bin Robah</div>
+            <div class="text-center text-gray-500 font-semibold text-[10px] py-6 mt-auto relative z-10 tracking-widest uppercase opacity-70">
+                Developed by Abu Atiqah © 2026
+            </div>
         </div>
 
         <div id="halamanAdmin" class="hidden min-h-screen w-full bg-gray-100 pb-10 flex-grow relative z-10 flex flex-col">
@@ -314,6 +330,10 @@
                 <div class="space-y-5 max-h-[58vh] overflow-y-auto scroll-admin pr-2" id="dataJurnalMobile"></div>
             </div>
             
+            <div class="mt-auto py-4 relative z-10 w-full text-center">
+                <p class="text-gray-500 font-semibold text-[10px] tracking-widest uppercase">Developed by Abu Atiqah © 2026</p>
+            </div>
+
             <table id="tabelTersembunyi" class="hidden"></table>
         </div>
 
