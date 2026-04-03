@@ -672,21 +672,87 @@
             finally { btn.innerText = "Simpan Perubahan"; btn.disabled = false; }
         };
 
-        // --- EXPORT ---
-        document.getElementById('exportBtn').addEventListener('click', () => {
-            let csv = [];
-            const barisTabel = document.querySelectorAll("#tabelTersembunyi tr");
-            if(barisTabel.length <= 1) { alert("Tidak ada data untuk diekspor sesuai filter saat ini."); return; }
-            for (let i = 0; i < barisTabel.length; i++) {
-                let baris = [], kolom = barisTabel[i].querySelectorAll("td, th");
-                for (let j = 0; j < kolom.length; j++) baris.push(`"${kolom[j].innerText.replace(/"/g, '""')}"`); 
-                csv.push(baris.join(","));
+        document.getElementById('exportBtn').addEventListener('click', async () => {
+            if (typeof ExcelJS === 'undefined') { alert("Sistem Excel sedang dimuat, coba klik lagi."); return; }
+            if (dataUntukExport.length === 0) { alert("Tidak ada data untuk diekspor sesuai filter saat ini."); return; }
+
+            const btn = document.getElementById('exportBtn');
+            const isiAwal = btn.innerHTML;
+            btn.innerHTML = "⏳"; 
+            btn.disabled = true;
+
+            try {
+                const workbook = new ExcelJS.Workbook();
+                const worksheet = workbook.addWorksheet('Laporan Jurnal');
+
+                worksheet.columns = [
+                    { header: 'No', key: 'no', width: 5 },
+                    { header: 'Tanggal', key: 'tanggal', width: 15 },
+                    { header: 'Smt', key: 'smt', width: 8 },
+                    { header: 'Nama Guru', key: 'guru', width: 25 },
+                    { header: 'Kelas', key: 'kelas', width: 10 },
+                    { header: 'Mapel', key: 'mapel', width: 20 },
+                    { header: 'Lingkup Materi', key: 'materi', width: 40 },
+                    { header: 'Tujuan Pembelajaran', key: 'tujuan', width: 40 },
+                    { header: 'Status RPP', key: 'rpp', width: 22 },
+                    { header: 'Santri Bimbingan', key: 'santri', width: 25 },
+                    { header: 'Tindakan', key: 'tindakan', width: 30 }
+                ];
+
+                const headerRow = worksheet.getRow(1);
+                headerRow.eachCell((cell) => {
+                    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E3A8A' } };
+                    cell.font = { color: { argb: 'FFFFFFFF' }, bold: true, size: 11 };
+                    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+                    cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+                });
+                headerRow.height = 30;
+
+                dataUntukExport.forEach((d, index) => {
+                    const row = worksheet.addRow({
+                        no: index + 1,
+                        tanggal: d.tanggal || '-',
+                        smt: d.semester ? d.semester.charAt(0) : '-', 
+                        guru: d.nama_guru ? d.nama_guru.replace('Ustaz ', 'Ust. ') : '-',
+                        kelas: d.kelas || '-',
+                        mapel: d.mapel || '-',
+                        materi: d.lingkup_materi || '-',
+                        tujuan: d.tujuan_pembelajaran || '-',
+                        rpp: d.target_rpp || '-',
+                        santri: d.santri_bimbingan || '-',
+                        tindakan: d.tindakan_bimbingan || '-'
+                    });
+
+                    row.eachCell((cell, colNumber) => {
+                        cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+                        cell.alignment = { vertical: 'middle', wrapText: true };
+                        if([1, 2, 3, 5, 9].includes(colNumber)) cell.alignment.horizontal = 'center';
+
+                        if (colNumber === 9) {
+                            if(cell.value.includes("Belum Selesai")) {
+                                cell.font = { color: { argb: 'FF990000' }, bold: true }; 
+                            } else {
+                                cell.font = { color: { argb: 'FF006600' }, bold: true }; 
+                            }
+                        }
+                    });
+                });
+
+                const buffer = await workbook.xlsx.writeBuffer();
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+
+                const tglDownload = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+                link.download = `Laporan_Jurnal_Bilal_${tglDownload}.xlsx`;
+                link.click();
+            } catch (error) {
+                console.error(error);
+                alert("Terjadi kesalahan saat membuat file Excel.");
+            } finally {
+                btn.innerHTML = isiAwal; 
+                btn.disabled = false;
             }
-            const csvFile = new Blob([csv.join("\n")], {type: "text/csv"});
-            const downloadLink = document.createElement("a");
-            downloadLink.download = "Rekap_Jurnal.csv";
-            downloadLink.href = window.URL.createObjectURL(csvFile);
-            downloadLink.click();
         });
 
         document.getElementById('exportPdfBtn').addEventListener('click', () => {
